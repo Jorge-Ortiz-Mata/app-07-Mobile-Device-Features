@@ -2,7 +2,6 @@ import { atom } from "jotai";
 
 export const placesAtom = atom({});
 
-
 /*
 
 import { useAtom } from "jotai";
