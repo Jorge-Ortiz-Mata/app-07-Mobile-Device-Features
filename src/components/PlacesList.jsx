@@ -2,14 +2,19 @@ import { View, Text, FlatList } from "react-native";
 import { useAtom } from "jotai";
 import { placesAtom } from "../data/atomVariables";
 
-export default function PlacesList(){
-  const [places] = useAtom(placesAtom)
+import { places } from '../data/dummy-places';
+import SinglePlaceBox from "./SinglePlaceBox";
 
-  console.log(places);
+export default function PlacesList(){
+  // const [places] = useAtom(placesAtom)
 
   return(
-    <View className="border">
-      <Text>All Places</Text>
+    <View className="mt-5">
+      <FlatList
+        data={places}
+        keyExtractor={place => place.id}
+        renderItem={({item}) => <SinglePlaceBox place={item} />}
+      />
     </View>
   )
 }

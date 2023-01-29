@@ -1,6 +1,6 @@
 import { atom } from "jotai";
 
-export const placesAtom = atom({});
+export const placesAtom = atom([]);
 
 /*
 

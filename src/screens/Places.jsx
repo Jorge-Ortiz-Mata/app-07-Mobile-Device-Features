@@ -3,10 +3,14 @@ import { StatusBar } from 'expo-status-bar';
 
 import CustomButton from "../components/CustomButton";
 import PlacesList from "../components/PlacesList";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Places(){
+  const navigation = useNavigation();
 
-  function goToCreatePlace(){}
+  function goToCreatePlace(){
+    navigation.navigate('CreatePlace');
+  }
 
   return(
     <View className="flex-1 items-center bg-white">
