@@ -1,4 +1,4 @@
-class Place {
+class PlaceObject {
   constructor(id, name, imageURL, location) {
     this.id = id;
     this.name = name;
@@ -7,4 +7,4 @@ class Place {
   }
 }
 
-export default Place;
+export default PlaceObject;

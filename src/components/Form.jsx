@@ -1,23 +1,42 @@
+import { useAtom } from "jotai";
 import { useState } from "react";
-import { View } from "react-native";
+import { View, Alert } from "react-native";
 
 import CustomButton from "./CustomButton";
 import FieldForm from "./FieldForm";
 
+import { placesAtom } from "../data/atomVariables";
+import PlaceObject from "../utilities/place";
+import { useNavigation } from "@react-navigation/native";
+
 export default function Form(){
-  let [place, setPlace] = useState({name: '', imageURL: '', location: ''});
+  const navigation = useNavigation();
+  const [places, setPlaces] = useAtom(placesAtom);
+  const [place, setPlace] = useState({id: 0, name: '', imageURL: '', location: ''});
 
   function buildPlace(name, value){
     setPlace(previousState => ({
       ...previousState, [name]: value
-    }))
+    }));
   }
 
   function savePlace(){
-    console.log(`Your place is: ${place.name}`)
+    if(place.name == null || place.imageURL == null || place.location == null){
+      Alert.alert(
+        'Fields empty',
+        'Please, ensure that all fields are filled in correctly'
+      )
+    } else {
+      const id = places.length + 1;
+      const newPlace = new PlaceObject(id, place.name, place.imageURL, place.location);
+      places.push(newPlace);
+      Alert.alert(
+        'Place created',
+        'Your new place has been created correctly.'
+      )
+      navigation.navigate('Places')
+    }
   }
-
-  console.log(place)
 
   return(
     <View className="bg-white p-2 m-2 rounded-lg">
