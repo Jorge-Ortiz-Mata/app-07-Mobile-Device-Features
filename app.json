@@ -33,7 +33,7 @@
       [
         "expo-image-picker",
         {
-          "cameraPermission": "In order to take photos, you have to give access to this app."
+          "cameraPermission": "In order to take photos, you have to give access to this app. Change me later in app.json file :)"
         }
       ]
     ]

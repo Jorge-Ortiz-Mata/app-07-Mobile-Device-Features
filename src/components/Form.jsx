@@ -4,6 +4,7 @@ import { View, Alert } from "react-native";
 
 import CustomButton from "./CustomButton";
 import FieldForm from "./FieldForm";
+import ImagePicker from "./ImagePicker";
 
 import { placesAtom } from "../data/atomVariables";
 import PlaceObject from "../utilities/place";
@@ -41,7 +42,7 @@ export default function Form(){
   return(
     <View className="bg-white p-2 m-2 rounded-lg">
       <FieldForm question="Place's name" name="name" buildPlace={buildPlace} />
-      <FieldForm question="Place's image" name="imageURL" buildPlace={buildPlace} />
+      <ImagePicker />
       <FieldForm question="Place's location" name="location" buildPlace={buildPlace} />
       <View className="items-center mt-10 mb-5">
         <CustomButton title="Create place" action={savePlace} />
