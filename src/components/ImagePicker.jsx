@@ -38,9 +38,6 @@ export default function ImagePicker(){
     }
   }
 
-  console.log('Response: ')
-  console.log(imageUri)
-
   return(
     <View className="my-5">
       <Text>Add a new photo:</Text>
