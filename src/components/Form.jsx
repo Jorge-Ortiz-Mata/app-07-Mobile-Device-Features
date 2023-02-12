@@ -8,6 +8,7 @@ import ImagePicker from "./ImagePicker";
 import LocationPicker from "./LocationPicker";
 
 import { placesAtom } from "../data/atomVariables";
+import { insertPlace } from "../utilities/database";
 import PlaceObject from "../utilities/place";
 import { useNavigation } from "@react-navigation/native";
 
@@ -22,7 +23,7 @@ export default function Form(){
     }));
   }
 
-  function savePlace(){
+  async function savePlace(){
     if(place.name == null || place.imageURL == null || place.location == null){
       Alert.alert(
         'Fields empty',
@@ -31,6 +32,7 @@ export default function Form(){
     } else {
       const id = places.length + 1;
       const newPlace = new PlaceObject(id, place.name, place.imageURL, place.location);
+      await insertPlace(place)
       places.push(newPlace);
       Alert.alert(
         'Place created',
