@@ -1,12 +1,20 @@
 import { View, Text, FlatList } from "react-native";
-import { useAtom } from "jotai";
-import { placesAtom } from "../data/atomVariables";
+import { useEffect, useState } from "react";
+import { fetchPlaces } from "../utilities/database";
 
-// import { places } from '../data/dummy-places';
 import SinglePlaceBox from "./SinglePlaceBox";
 
 export default function PlacesList(){
-  const [places] = useAtom(placesAtom)
+  const [places, setPlaces] = useState({});
+
+  useEffect(() => {
+    async function loadPlaces() {
+      const allPlaces = await fetchPlaces();
+      setPlaces(allPlaces)
+    }
+
+    loadPlaces();
+  }, [])
 
   return(
     <View className="mt-5">

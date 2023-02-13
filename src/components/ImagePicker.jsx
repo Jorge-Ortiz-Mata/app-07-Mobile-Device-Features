@@ -2,7 +2,7 @@ import { View, Button, Text, Alert, Image } from "react-native";
 import { launchCameraAsync, useCameraPermissions, PermissionStatus } from 'expo-image-picker';
 import { useState } from "react";
 
-export default function ImagePicker(){
+export default function ImagePicker({name, buildPlace}){
   const [imageUri, setImageURL] = useState(undefined);
   const [cameraPermissionInformation, requestPermission] = useCameraPermissions();
 
@@ -15,7 +15,7 @@ export default function ImagePicker(){
     if (cameraPermissionInformation.status === PermissionStatus.DENIED){
       Alert.alert(
         'Permission denied.',
-        'You need to able camera permissions to take photos'
+        'You need to enable camera permissions to take photos'
       );
       return false;
     }
@@ -32,7 +32,8 @@ export default function ImagePicker(){
         aspect: [16, 9],
         quality: 0.5
       });
-      setImageURL(image.assets[0].uri)
+      setImageURL(image.assets[0].uri);
+      buildPlace(name, imageUri);
     } else {
       return;
     }
