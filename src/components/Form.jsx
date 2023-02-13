@@ -15,14 +15,10 @@ export default function Form(){
   const [place, setPlace] = useState({id: 0, name: '', imageURL: '', location: ''});
 
   function buildPlace(name, value){
-    console.log(`Name: ${name}`)
-    console.log(`Value: ${value}`)
     setPlace(previousState => ({
       ...previousState, [name]: value
     }));
   }
-
-  console.log(place);
 
   async function savePlace(){
     if(place.name == null || place.imageURL.length < 1 || place.location == null){

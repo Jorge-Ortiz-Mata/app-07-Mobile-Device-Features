@@ -56,11 +56,30 @@ export function fetchPlaces(){
           const places = [];
 
           result.rows._array.forEach((place) => {
-            console.log(place)
             places.push(new PlaceObject(place.id, place.name, place.imageUri, place.location));
           })
 
           resolve(places);
+        },
+        (_, error) => {
+          reject(error);
+        }
+      )
+    })
+  })
+
+  return promise;
+}
+
+export function fetchPlace(id){
+  const promise = new Promise((resolve, reject) => {
+    database.transaction((tx) => {
+      tx.executeSql(
+        `SELECT * FROM places_database WHERE id = ?`,
+        [id],
+        (_, result) => {
+          const place = new PlaceObject(result.rows._array[0].id, result.rows._array[0].name, result.rows._array[0].imageUri, result.rows._array[0].location)
+          resolve(place)
         },
         (_, error) => {
           reject(error);

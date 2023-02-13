@@ -23,7 +23,6 @@ export default function LocationPicker(){
 
   async function getMyLocation(){
     const response = await verifyPermissions();
-    console.log(response)
 
     if(response) {
       console.log('It entered')
